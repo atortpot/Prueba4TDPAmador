@@ -1,0 +1,48 @@
+@startuml
+
+interface Programa {
+    + ejecutar(): void
+    + seDetendra(): boolean
+    + reverse(): void
+    + isReversed(): boolean
+    + getContador(): int
+}
+
+class ProgramaCuentaArriba {
+    - valor: int
+    - reverse: boolean
+    + ejecutar(): void
+    + getContador(): int
+    + seDetendra(): boolean
+    + reverse(): void
+    + isReversed(): boolean
+}
+
+class ProgramaCuentaAtras {
+    - valor: int
+    - reverse: boolean
+    + ejecutar(): void
+    + getContador(): int
+    + seDetendra(): boolean
+    + reverse(): void
+    + isReversed(): boolean
+}
+
+class ProgramaHaltChecker {
+    {static} + verificarYMostrar(programa: Programa): boolean
+}
+
+class Main {
+    - {static} stopRequested: boolean
+    - {static} currentProgram: Programa
+    + {static} main(args: String[]): void
+}
+
+Programa <|-- ProgramaCuentaArriba
+Programa <|-- ProgramaCuentaAtras
+
+Main ..> ProgramaCuentaArriba : uses >
+Main ..> ProgramaCuentaAtras : uses >
+Main ..> ProgramaHaltChecker : uses >
+
+@enduml
